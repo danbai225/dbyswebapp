@@ -1,0 +1,48 @@
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+import axios from "axios";
+Vue.config.productionTip = false;
+axios.defaults.withCredentials = true;
+Vue.prototype.$axios = axios;
+import "element-ui/lib/theme-chalk/index.css";
+import {
+  Row,
+  Carousel,
+  CarouselItem,
+  Col,
+  Divider,
+  Menu,
+  MenuItem,
+  Avatar,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  Button,
+  Pagination,
+  Form,
+  FormItem,
+  Input
+} from "element-ui";
+Vue.use(Row);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
+Vue.use(Col);
+Vue.use(Divider);
+Vue.use(Menu);
+Vue.use(MenuItem);
+Vue.use(Avatar);
+Vue.use(Dropdown);
+Vue.use(DropdownItem);
+Vue.use(Button);
+Vue.use(DropdownMenu);
+Vue.use(Pagination);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount("#app");
