@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-page-header @back="goBack" title="返回" :content="pm"></el-page-header>
     <div class="dplayer"></div>
     <d-player ref="player" :options="options" />
     <Synopsis />
@@ -18,6 +19,7 @@ export default {
   },
   data() {
     return {
+      pm: "",
       player: null,
       jis: null,
       id: 0,
@@ -46,9 +48,14 @@ export default {
   methods: {
     ...mapMutations({
       addys: "SET_YS"
-    })
+    }),
+    goBack() {
+      this.player.destroy();
+      this.$router.go(-1);
+    }
   },
   mounted() {
+    window.addEventListener("popstate", this.goBack, false);
     let id = this.$route.params.id;
     if (id == undefined) {
       this.$router.push("/");
@@ -59,6 +66,7 @@ export default {
       if (ys == null) {
         this.$router.push("/");
       }
+      this.pm = ys.pm;
       this.addys(ys);
       if (ys.gkdz != "[]") {
         this.jis = JSON.parse(ys.gkdz);
@@ -90,3 +98,8 @@ export default {
   }
 };
 </script>
+<style>
+.el-page-header {
+  margin: 10px;
+}
+</style>

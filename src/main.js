@@ -26,7 +26,8 @@ import {
   Form,
   FormItem,
   Input,
-  Loading
+  Loading,
+  PageHeader
 } from "element-ui";
 Vue.use(Row);
 Vue.use(Carousel);
@@ -45,6 +46,7 @@ Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Loading);
+Vue.use(PageHeader);
 new Vue({
   router,
   store,

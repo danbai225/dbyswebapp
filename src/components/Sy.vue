@@ -13,15 +13,7 @@
       </div>
       <h3>最新电影</h3>
       <div class="type">
-        <el-col
-          :xs="8"
-          :sm="8"
-          :md="6"
-          :lg="4"
-          :xl="4"
-          v-for="dy in sy.dy"
-          :key="dy.id"
-        >
+        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="dy in sy.dy" :key="dy.id">
           <div class="ys">
             <span class="zt">{{ dy.zt }}</span>
             <img class="ystp" :src="dy.tp" @click="ysOn(dy.id)" />
@@ -35,15 +27,7 @@
       <el-divider></el-divider>
       <h3>最新电视剧</h3>
       <div class="type">
-        <el-col
-          :xs="8"
-          :sm="8"
-          :md="6"
-          :lg="4"
-          :xl="4"
-          v-for="dsj in sy.dsj"
-          :key="dsj.id"
-        >
+        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="dsj in sy.dsj" :key="dsj.id">
           <div class="ys">
             <span class="zt">{{ dsj.zt }}</span>
             <img class="ystp" :src="dsj.tp" @click="ysOn(dsj.id)" />
@@ -56,15 +40,7 @@
       <el-divider></el-divider>
       <h3>最新综艺</h3>
       <div class="type">
-        <el-col
-          :xs="8"
-          :sm="8"
-          :md="6"
-          :lg="4"
-          :xl="4"
-          v-for="zy in sy.zy"
-          :key="zy.id"
-        >
+        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="zy in sy.zy" :key="zy.id">
           <div class="ys">
             <span class="zt">{{ zy.zt }}</span>
             <img class="ystp" :src="zy.tp" @click="ysOn(zy.id)" />
@@ -77,15 +53,7 @@
       <el-divider></el-divider>
       <h3>最新动漫</h3>
       <div class="type">
-        <el-col
-          :xs="8"
-          :sm="8"
-          :md="6"
-          :lg="4"
-          :xl="4"
-          v-for="dm in sy.dm"
-          :key="dm.id"
-        >
+        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="dm in sy.dm" :key="dm.id">
           <div class="ys">
             <span class="zt">{{ dm.zt }}</span>
             <img class="ystp" :src="dm.tp" @click="ysOn(dm.id)" />
@@ -127,8 +95,6 @@ export default {
 };
 </script>
 <style>
-.gg {
-}
 .el-col {
   border-radius: 4px;
 }
@@ -165,10 +131,6 @@ export default {
   font-size: 12px;
   color: #ffffff;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .zt {
-  }
-}
 @media (min-width: 320px) and (max-width: 767px) {
   .lbt {
     height: 11.25rem;
@@ -182,8 +144,6 @@ export default {
   }
   .type {
     width: 100%;
-  }
-  .zt {
   }
 }
 </style>

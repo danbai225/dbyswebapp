@@ -1,5 +1,6 @@
 <template>
   <div id="login">
+    <el-page-header @back="goBack" title="返回" content="登陆" />
     <h3>登陆</h3>
     <span>欢迎使用淡白影视</span>
     <div class="form">
@@ -10,18 +11,28 @@
         label-position="top"
         size="small"
       >
-        <el-form-item label="用户名" prop="username"
-          ><el-input v-model="dlForm.username" autocomplete="off"></el-input
-        ></el-form-item>
-        <el-form-item label="确认密码" prop="password"
-          ><el-input
+        <el-form-item
+          label="用户名"
+          prop="username"
+          @keyup.enter.native="submitForm()"
+        >
+          <el-input v-model="dlForm.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码" prop="password">
+          <el-input
             type="password"
             v-model="dlForm.password"
             autocomplete="off"
-          ></el-input
-        ></el-form-item>
+            @keyup.enter.native="submitForm()"
+          ></el-input>
+        </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm()">登陆</el-button>
+          <el-button
+            type="primary"
+            @click="submitForm()"
+            @keyup.enter.native="submitForm()"
+            >登陆</el-button
+          >
           <el-button @click="zc()">注册</el-button>
         </el-form-item>
       </el-form>
@@ -52,6 +63,9 @@ export default {
         type: type,
         duration: 2000
       });
+    },
+    goBack() {
+      this.$router.go(-1);
     },
     submitForm() {
       let data = new FormData();

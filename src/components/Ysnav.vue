@@ -2,9 +2,7 @@
   <div id="nav">
     <div id="menu">
       <el-dropdown placement="right-start" @command="handleCommand">
-        <el-button size="mini" type="primary">
-          =
-        </el-button>
+        <el-button size="mini" type="primary">=</el-button>
         <el-dropdown-menu slot="dropdown">
           <span v-if="user != null">欢迎{{ user.username }}:</span>
           <el-dropdown-item command="login" v-if="user == null"
@@ -15,7 +13,9 @@
           >
           <el-dropdown-item>搜索</el-dropdown-item>
           <el-dropdown-item v-if="user != null">个人中心</el-dropdown-item>
-          <el-dropdown-item v-if="user != null">退出登陆</el-dropdown-item>
+          <el-dropdown-item command="logout" v-if="user != null"
+            >退出登陆</el-dropdown-item
+          >
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -40,6 +40,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import { Message } from "element-ui";
 export default {
   name: "Ysnav",
   data() {
@@ -59,7 +60,23 @@ export default {
       add: "SET_USER"
     }),
     handleCommand(command) {
-      this.$router.push({ name: command });
+      console.log(command);
+      if (command == "logout") {
+        this.$axios.post(this.ysip + "/logout").then(response => {
+          response;
+          this.user = null;
+          localStorage.removeItem("user");
+          this.$store.commit("SET_USER", {});
+          Message({
+            showClose: true,
+            message: "您已退出登陆",
+            type: "success",
+            duration: 2000
+          });
+        });
+      } else {
+        this.$router.push({ name: command });
+      }
     }
   },
   mounted() {

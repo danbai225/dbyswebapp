@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ ys.pm }}</h3>
+    <h3>影视介绍</h3>
     <div id="content">
       <el-row :gutter="10">
         <el-col :xs="12" :sm="12" :md="6" :lg="4" :xl="3">
@@ -8,25 +8,32 @@
         </el-col>
         <el-col :xs="12" :sm="6" :md="8" :lg="9" :xl="11">
           <p class="bn" v-if="ys.dy != ''">
-            导演:<span class="bt">{{ ys.dy }}</span>
+            导演:
+            <span class="bt">{{ ys.dy }}</span>
           </p>
           <p class="bn" v-if="ys.zy != ''">
-            主演:<span class="bt">{{ ys.zy }}</span>
+            主演:
+            <span class="bt">{{ ys.zy }}</span>
           </p>
           <p class="bn" v-if="ys.dq != ''">
-            地区:<span class="bt">{{ ys.dq }}</span>
+            地区:
+            <span class="bt">{{ ys.dq }}</span>
           </p>
           <p class="bn" v-if="ys.zt != ''">
-            状态:<span class="bt">{{ ys.zt }}</span>
+            状态:
+            <span class="bt">{{ ys.zt }}</span>
           </p>
           <p class="bn" v-if="ys.dq != ''">
-            地区:<span class="bt">{{ ys.dq }}</span>
+            地区:
+            <span class="bt">{{ ys.dq }}</span>
           </p>
           <p class="bn" v-if="ys.sytime != ''">
-            播放时间:<span class="bt">{{ ys.sytime }}</span>
+            播放时间:
+            <span class="bt">{{ ys.sytime }}</span>
           </p>
           <p class="bn" v-if="ys.pf != ''">
-            评分:<span class="bt">{{ ys.pf }}</span>
+            评分:
+            <span class="bt">{{ ys.pf }}</span>
           </p>
         </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -34,9 +41,9 @@
             <p>{{ ys.js }}</p>
           </div>
         </el-col>
-        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
-          ><div class="grid-content bg-purple-light"></div
-        ></el-col>
+        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+          <div class="grid-content bg-purple-light"></div>
+        </el-col>
       </el-row>
 
       <div id="info"></div>
@@ -56,9 +63,6 @@ export default {
 </script>
 
 <style>
-h3 {
-  color: #409eff;
-}
 .js {
   text-align: center;
 }
