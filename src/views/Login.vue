@@ -54,7 +54,6 @@ export default {
       });
     },
     submitForm() {
-      console.log(this.dlForm);
       let data = new FormData();
       data.append("username", this.dlForm.username);
       data.append("password", this.dlForm.password);

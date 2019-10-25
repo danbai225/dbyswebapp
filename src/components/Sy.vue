@@ -6,7 +6,7 @@
       <div id="lb">
         <el-carousel :interval="2000" type="card">
           <el-carousel-item v-for="ys in sy.dy" :key="ys.id">
-            <img class="lbt" :src="ys.tp" />
+            <img class="lbt" :src="ys.tp" @click="ysOn(ys.id)" />
             <span class="lbpm">{{ ys.pm }}</span>
           </el-carousel-item>
         </el-carousel>
@@ -24,7 +24,7 @@
         >
           <div class="ys">
             <span class="zt">{{ dy.zt }}</span>
-            <img class="ystp" :src="dy.tp" />
+            <img class="ystp" :src="dy.tp" @click="ysOn(dy.id)" />
             <span>{{ dy.pm }}</span>
           </div>
         </el-col>
@@ -46,7 +46,7 @@
         >
           <div class="ys">
             <span class="zt">{{ dsj.zt }}</span>
-            <img class="ystp" :src="dsj.tp" />
+            <img class="ystp" :src="dsj.tp" @click="ysOn(dsj.id)" />
             <span>{{ dsj.pm }}</span>
           </div>
         </el-col>
@@ -67,7 +67,7 @@
         >
           <div class="ys">
             <span class="zt">{{ zy.zt }}</span>
-            <img class="ystp" :src="zy.tp" />
+            <img class="ystp" :src="zy.tp" @click="ysOn(zy.id)" />
             <span>{{ zy.pm }}</span>
           </div>
         </el-col>
@@ -88,7 +88,7 @@
         >
           <div class="ys">
             <span class="zt">{{ dm.zt }}</span>
-            <img class="ystp" :src="dm.tp" />
+            <img class="ystp" :src="dm.tp" @click="ysOn(dm.id)" />
             <span>{{ dm.pm }}</span>
           </div>
         </el-col>
@@ -105,9 +105,23 @@ export default {
       sy: {}
     };
   },
+  methods: {
+    ysOn(id) {
+      this.$router.push({ name: "ys", params: { id: id } });
+    }
+  },
   mounted() {
-    this.$axios.get("http://danbai:8081/sy").then(response => {
+    this.$axios.get(this.ysip + "/sy").then(response => {
       this.sy = response.data;
+      this.loading.close();
+    });
+  },
+  created() {
+    this.loading = this.$loading({
+      lock: true,
+      text: "Loading",
+      spinner: "el-icon-loading",
+      background: "rgba(255, 255, 255, 0.7)"
     });
   }
 };

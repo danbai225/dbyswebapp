@@ -3,9 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+window.Hls = require("hls.js");
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;
+Vue.prototype.ysip = process.env.VUE_APP_YSIP;
 import "element-ui/lib/theme-chalk/index.css";
 import {
   Row,
@@ -23,7 +25,8 @@ import {
   Pagination,
   Form,
   FormItem,
-  Input
+  Input,
+  Loading
 } from "element-ui";
 Vue.use(Row);
 Vue.use(Carousel);
@@ -41,6 +44,7 @@ Vue.use(Pagination);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
+Vue.use(Loading);
 new Vue({
   router,
   store,

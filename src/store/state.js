@@ -2,7 +2,8 @@
  * 全局存储状态
  */
 const state = {
-  user: {}
+  user: {},
+  ys: {}
 };
 
 export default state;

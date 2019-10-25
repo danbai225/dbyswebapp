@@ -13,7 +13,7 @@
         >
           <div class="ys">
             <span class="zt">{{ ys.zt }}</span>
-            <img class="ystp" :src="ys.tp" />
+            <img class="ystp" :src="ys.tp" @click="ysOn(ys.id)" />
             <span>{{ ys.pm }}</span>
           </div>
         </el-col>
@@ -22,7 +22,7 @@
     <div class="block">
       <el-pagination
         @current-change="handleCurrentChange"
-        :current-page.sync="page.pagenum"
+        :current-page.sync="page.page"
         :hide-on-single-page="true"
         :pager-count="5"
         :page-size="24"
@@ -50,16 +50,21 @@ export default {
   },
   methods: {
     handleCurrentChange(val) {
+      this.loading = this.$loading({
+        lock: true,
+        text: "Loading",
+        spinner: "el-icon-loading",
+        background: "rgba(255, 255, 255, 0.7)"
+      });
       this.$axios
-        .get(
-          "http://192.168.100.7:8081/gettypeys?type=" +
-            this.lxtype +
-            "&page=" +
-            val
-        )
+        .get(this.ysip + "/gettypeys?type=" + this.lxtype + "&page=" + val)
         .then(response => {
           this.page = response.data;
+          this.loading.close();
         });
+    },
+    ysOn(id) {
+      this.$router.push({ name: "ys", params: { id: id } });
     }
   },
   mounted() {
@@ -78,15 +83,19 @@ export default {
         break;
     }
     this.$axios
-      .get(
-        "http://danbai:8081/gettypeys?type=" +
-          this.lxtype +
-          "&page=" +
-          this.pagenum
-      )
+      .get(this.ysip + "/gettypeys?type=" + this.lxtype + "&page=" + 1)
       .then(response => {
         this.page = response.data;
+        this.loading.close();
       });
+  },
+  created() {
+    this.loading = this.$loading({
+      lock: true,
+      text: "Loading",
+      spinner: "el-icon-loading",
+      background: "rgba(255, 255, 255, 0.7)"
+    });
   }
 };
 </script>

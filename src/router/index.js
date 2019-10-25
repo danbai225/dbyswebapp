@@ -13,28 +13,27 @@ const routes = [
   {
     path: "/dy",
     name: "dy",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Dy.vue")
+    component: () => import("../views/Dy.vue")
   },
   {
     path: "/zy",
     name: "zy",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Zy.vue")
+    component: () => import("../views/Zy.vue")
   },
   {
     path: "/dsj",
     name: "dsj",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Dsj.vue")
+    component: () => import("../views/Dsj.vue")
   },
   {
     path: "/dm",
     name: "dm",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Dm.vue")
+    component: () => import("../views/Dm.vue")
   },
   {
     path: "/login",
     name: "login",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+    component: () => import("../views/Login.vue"),
     beforeEnter: (to, from, next) => {
       if (localStorage.getItem("user") == null) {
         next();
@@ -46,7 +45,19 @@ const routes = [
   {
     path: "/reg",
     name: "reg",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Reg.vue")
+    component: () => import("../views/Reg.vue")
+  },
+  {
+    path: "/ys",
+    name: "ys",
+    component: () => import("../views/Ys.vue"),
+    beforeEnter: (to, from, next) => {
+      if (to.params.id != undefined) {
+        next();
+      } else {
+        next(false);
+      }
+    }
   }
 ];
 

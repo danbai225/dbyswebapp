@@ -4,3 +4,6 @@
 export const user = state => {
   return state.user;
 };
+export const ys = state => {
+  return state.ys;
+};
