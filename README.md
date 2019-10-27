@@ -1,11 +1,6 @@
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="http://img.p00q.cn:222/2019/10/25/b8fc388600d73.ico">
-
-</center>
-
-# 淡白影视APP
+<p align="center"><img alt="淡白影视app" src="http://img.p00q.cn:222/2019/10/25/b8fc388600d73.ico"></p><h2 align="center">
+淡白影视APP
+</h2>
 
 一个基于Vue+Cordova跨平台实现[淡白影视](https://github.com/danbai225/dbys)的项目
 
