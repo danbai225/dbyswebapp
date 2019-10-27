@@ -4,7 +4,7 @@
       <el-row :gutter="10">
         <el-col
           :xs="8"
-          :sm="8"
+          :sm="6"
           :md="6"
           :lg="4"
           :xl="4"

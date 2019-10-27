@@ -18,7 +18,7 @@
         >
           <el-input v-model="dlForm.username" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="password">
+        <el-form-item label="密码" prop="password">
           <el-input
             type="password"
             v-model="dlForm.password"
@@ -72,7 +72,7 @@ export default {
       data.append("username", this.dlForm.username);
       data.append("password", this.dlForm.password);
       this.$axios
-        .post("http://danbai:8081/loginapp", data)
+        .post(this.ysip + "/loginapp", data)
         .then(response => {
           if (response.data != "err") {
             this.msg("success", "欢迎" + response.data.username + "回来");

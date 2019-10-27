@@ -13,7 +13,15 @@
       </div>
       <h3>最新电影</h3>
       <div class="type">
-        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="dy in sy.dy" :key="dy.id">
+        <el-col
+          :xs="8"
+          :sm="6"
+          :md="6"
+          :lg="4"
+          :xl="4"
+          v-for="dy in sy.dy"
+          :key="dy.id"
+        >
           <div class="ys">
             <span class="zt">{{ dy.zt }}</span>
             <img class="ystp" :src="dy.tp" @click="ysOn(dy.id)" />
@@ -27,7 +35,15 @@
       <el-divider></el-divider>
       <h3>最新电视剧</h3>
       <div class="type">
-        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="dsj in sy.dsj" :key="dsj.id">
+        <el-col
+          :xs="8"
+          :sm="6"
+          :md="6"
+          :lg="4"
+          :xl="4"
+          v-for="dsj in sy.dsj"
+          :key="dsj.id"
+        >
           <div class="ys">
             <span class="zt">{{ dsj.zt }}</span>
             <img class="ystp" :src="dsj.tp" @click="ysOn(dsj.id)" />
@@ -40,7 +56,15 @@
       <el-divider></el-divider>
       <h3>最新综艺</h3>
       <div class="type">
-        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="zy in sy.zy" :key="zy.id">
+        <el-col
+          :xs="8"
+          :sm="6"
+          :md="6"
+          :lg="4"
+          :xl="4"
+          v-for="zy in sy.zy"
+          :key="zy.id"
+        >
           <div class="ys">
             <span class="zt">{{ zy.zt }}</span>
             <img class="ystp" :src="zy.tp" @click="ysOn(zy.id)" />
@@ -53,7 +77,15 @@
       <el-divider></el-divider>
       <h3>最新动漫</h3>
       <div class="type">
-        <el-col :xs="8" :sm="8" :md="6" :lg="4" :xl="4" v-for="dm in sy.dm" :key="dm.id">
+        <el-col
+          :xs="8"
+          :sm="6"
+          :md="6"
+          :lg="4"
+          :xl="4"
+          v-for="dm in sy.dm"
+          :key="dm.id"
+        >
           <div class="ys">
             <span class="zt">{{ dm.zt }}</span>
             <img class="ystp" :src="dm.tp" @click="ysOn(dm.id)" />
@@ -119,6 +151,10 @@ export default {
 }
 .ys {
   height: 28rem;
+  font-size: 18px;
+}
+.ys span {
+  font-size: 16px;
 }
 .ystp {
   width: 100%;
@@ -131,6 +167,24 @@ export default {
   font-size: 12px;
   color: #ffffff;
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .lbt {
+    height: 16rem;
+  }
+  .el-carousel__container {
+    height: 18rem !important;
+  }
+  .ys {
+    height: 22rem;
+    margin-bottom: 10px;
+  }
+  .type {
+    width: 100%;
+  }
+  .ys span {
+    font-size: 16px;
+  }
+}
 @media (min-width: 320px) and (max-width: 767px) {
   .lbt {
     height: 11.25rem;
@@ -139,11 +193,14 @@ export default {
     height: 13rem !important;
   }
   .ys {
-    height: 13rem;
+    height: 15rem;
     margin-bottom: 10px;
   }
   .type {
     width: 100%;
+  }
+  .ys span {
+    font-size: 13px;
   }
 }
 </style>
