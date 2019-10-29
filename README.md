@@ -21,6 +21,7 @@
 + 跨平台同步观看进度
 
 ## 项目所用到的
+
 + Vue
 + Dplayer
 + Element-ui
