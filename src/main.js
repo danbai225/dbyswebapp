@@ -27,7 +27,9 @@ import {
   FormItem,
   Input,
   Loading,
-  PageHeader
+  PageHeader,
+  RadioGroup,
+  RadioButton
 } from "element-ui";
 Vue.use(Row);
 Vue.use(Carousel);
@@ -47,6 +49,8 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Loading);
 Vue.use(PageHeader);
+Vue.use(RadioGroup);
+Vue.use(RadioButton);
 new Vue({
   router,
   store,

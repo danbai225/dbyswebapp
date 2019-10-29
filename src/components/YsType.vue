@@ -12,9 +12,9 @@
           :key="ys.id"
         >
           <div class="ys">
-            <span class="zt">{{ ys.zt }}</span>
             <img class="ystp" :src="ys.tp" @click="ysOn(ys.id)" />
-            <span>{{ ys.pm }}</span>
+            <p class="zt">{{ ys.zt }}</p>
+            <p class="pm">{{ ys.pm }}</p>
           </div>
         </el-col>
       </el-row>
@@ -64,7 +64,7 @@ export default {
         });
     },
     ysOn(id) {
-      this.$router.push({ name: "ys", params: { id: id } });
+      this.$router.push({ name: "ys", query: { id: id } });
     }
   },
   mounted() {
@@ -104,24 +104,53 @@ export default {
 .type {
   margin: 0px auto;
 }
-.ys {
-  height: 28rem;
+.type {
+  margin: 0rem auto;
+}
+.ystp {
+  width: 100%;
 }
 .zt {
-  position: relative;
-  top: 90%;
-  background: #09c878;
-  font-size: 15px;
+  margin: 0px;
+  line-height: 1rem;
+  font-size: 1rem;
+  background: #67c23a;
   color: #ffffff;
+  white-space: nowrap; /* 使文本不可换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略符号来代表被隐藏的文本 */
 }
+.pm {
+  margin: 5px;
+  line-height: 1rem;
+  font-size: 1rem;
+  white-space: nowrap; /* 使文本不可换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略符号来代表被隐藏的文本 */
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
-  .ys {
-    height: 25rem;
+  .zt {
+    margin: 0px;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+  }
+  .pm {
+    margin: 10px;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
   }
 }
-@media (min-width: 320px) and (max-width: 767px) {
-  .ys {
-    height: 16rem;
+@media (min-width: 992px) {
+  .zt {
+    margin: 0px;
+    line-height: 2rem;
+    font-size: 2rem;
+  }
+  .pm {
+    margin: 10px;
+    line-height: 2rem;
+    font-size: 2rem;
   }
 }
 </style>

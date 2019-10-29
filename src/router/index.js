@@ -52,17 +52,22 @@ const routes = [
     name: "ys",
     component: () => import("../views/Ys.vue"),
     beforeEnter: (to, from, next) => {
-      if (to.params.id != undefined) {
-        next();
+      if ((to.query.id == undefined) | (to.query.id == "")) {
+        next("/");
       } else {
-        next(false);
+        next();
       }
     }
+  },
+  {
+    path: "/search",
+    name: "search",
+    component: () => import("../views/Search.vue")
   }
 ];
 
 const router = new VueRouter({
-	mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 });

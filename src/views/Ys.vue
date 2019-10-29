@@ -3,6 +3,13 @@
     <el-page-header @back="goBack" title="返回" :content="pm"></el-page-header>
     <div class="dplayer"></div>
     <d-player ref="player" :options="options" />
+    <el-radio-group v-model="radio" :change="huan()">
+      <el-radio-button
+        :label="ji.name"
+        v-for="ji in jis"
+        :key="ji.name"
+      ></el-radio-button>
+    </el-radio-group>
     <Synopsis />
   </div>
 </template>
@@ -19,10 +26,15 @@ export default {
   },
   data() {
     return {
+      radio: "",
+      lastjiname: "",
       pm: "",
       player: null,
       jis: null,
       id: 0,
+      tagid: 0,
+      ys: {},
+      tiaotime: 0,
       options: {
         video: {
           url: "",
@@ -30,12 +42,6 @@ export default {
         },
         autoplay: true,
         logo: require("../assets/logo.png"),
-        danmaku: {
-          id: "",
-          api: "http://39.108.110.44:1207/",
-          user: "user",
-          bottom: "30%"
-        },
         contextmenu: [
           {
             text: "淡白博客",
@@ -46,26 +52,75 @@ export default {
     };
   },
   methods: {
+    huan() {
+      for (var i in this.jis) {
+        if (this.jis[i].name == this.radio) {
+          if (this.lastjiname != this.jis[i].name) {
+            this.bo(i);
+          }
+        }
+      }
+    },
+    bo(i) {
+      if (this.jis[i].name != null) {
+        this.lastjiname = this.jis[i].name;
+        this.options.video.url = this.jis[i].url;
+  
+        this.player.switchVideo(this.options.video, this.options.danmaku);
+        this.gettagid(i, this.jis[i].name);
+        this.radio = this.jis[i].name;
+      }
+    },
     ...mapMutations({
       addys: "SET_YS"
     }),
     goBack() {
-      this.player.destroy();
       this.$router.go(-1);
+    },
+    gettagid(id, jiname) {
+      this.$axios
+        .get(
+          this.ysip +
+            "/ys/gettagid?pm=" +
+            this.ys.pm +
+            this.ys.dy +
+            this.ys.lx +
+            "&id=" +
+            id +
+            "&ysid=" +
+            this.id +
+            jiname
+        )
+        .then(response => {
+          this.tagid = response.data;
+        });
+    },
+    nexiji() {
+      for (var i in this.jis) {
+        if (this.jis[i].name == this.radio) {
+          this.bo(parseInt(i) + 1);
+        }
+      }
+    },
+    tiao() {
+      if (this.tiaotime != 0) {
+        this.player.seek(this.tiaotime);
+        this.tiaotime = 0;
+      }
     }
   },
   mounted() {
-    window.addEventListener("popstate", this.goBack, false);
-    let id = this.$route.params.id;
-    if (id == undefined) {
-      this.$router.push("/");
-    }
+    this.user = this.$store.getters.user;
+    this.player = this.$refs.player.dp;
+
+    let id = this.$route.query.id;
     this.id = id;
     this.$axios.get(this.ysip + "/getys?id=" + id).then(response => {
       var ys = response.data.ys;
       if (ys == null) {
         this.$router.push("/");
       }
+      this.ys = ys;
       this.pm = ys.pm;
       this.addys(ys);
       if (ys.gkdz != "[]") {
@@ -74,18 +129,30 @@ export default {
         this.jis = JSON.parse(ys.xzdz);
       }
       if (response.data.gkls != null) {
-        this.options.video.url = response.data.gkls.url;
-        this.options.danmaku.id = id + response.data.gkls.jiname;
+        this.radio = response.data.gkls.jiname;
+        this.tiaotime = response.data.time;
       } else {
         this.options.video.url = this.jis[0].url;
-        this.options.danmaku.id = id + this.jis[0].name;
+        this.radio = this.jis[0].name;
       }
-      this.player = this.$refs.player.dp;
-      this.player.switchVideo(this.options.video, this.options.danmaku);
-      if (response.data.time != null) {
-        this.player.seek(response.data.time);
+      if(this.user.username!=undefined){
+this.dsq = setInterval(() => {
+        let data = new FormData();
+        data.append("ysid", this.id);
+        data.append("username", this.user.username);
+        data.append("time", this.player.video.currentTime);
+        data.append("ysjiname", this.radio);
+        this.$axios.post(this.ysip + "/ys/time", data);
+      }, 5000);
       }
+      
       this.loading.close();
+    });
+    this.player.on("ended", () => {
+      this.nexiji();
+    });
+    this.player.on("playing", () => {
+      this.tiao();
     });
   },
   created() {
@@ -95,6 +162,10 @@ export default {
       spinner: "el-icon-loading",
       background: "rgba(255, 255, 255, 0.7)"
     });
+  },
+  destroyed() {
+    this.player.destroy();
+    window.clearTimeout(this.dsq);
   }
 };
 </script>

@@ -11,7 +11,7 @@
           </el-carousel-item>
         </el-carousel>
       </div>
-      <h3>最新电影</h3>
+      <h3 class="typebt">最新电影</h3>
       <div class="type">
         <el-col
           :xs="8"
@@ -23,9 +23,9 @@
           :key="dy.id"
         >
           <div class="ys">
-            <span class="zt">{{ dy.zt }}</span>
             <img class="ystp" :src="dy.tp" @click="ysOn(dy.id)" />
-            <span>{{ dy.pm }}</span>
+            <p class="zt">{{ dy.zt }}</p>
+            <p class="pm">{{ dy.pm }}</p>
           </div>
         </el-col>
       </div>
@@ -33,7 +33,7 @@
 
     <el-row :gutter="10">
       <el-divider></el-divider>
-      <h3>最新电视剧</h3>
+      <h3 class="typebt">最新电视剧</h3>
       <div class="type">
         <el-col
           :xs="8"
@@ -45,16 +45,16 @@
           :key="dsj.id"
         >
           <div class="ys">
-            <span class="zt">{{ dsj.zt }}</span>
             <img class="ystp" :src="dsj.tp" @click="ysOn(dsj.id)" />
-            <span>{{ dsj.pm }}</span>
+            <p class="zt">{{ dsj.zt }}</p>
+            <p class="pm">{{ dsj.pm }}</p>
           </div>
         </el-col>
       </div>
     </el-row>
     <el-row :gutter="10">
       <el-divider></el-divider>
-      <h3>最新综艺</h3>
+      <h3 class="typebt">最新综艺</h3>
       <div class="type">
         <el-col
           :xs="8"
@@ -66,16 +66,16 @@
           :key="zy.id"
         >
           <div class="ys">
-            <span class="zt">{{ zy.zt }}</span>
             <img class="ystp" :src="zy.tp" @click="ysOn(zy.id)" />
-            <span>{{ zy.pm }}</span>
+            <p class="zt">{{ zy.zt }}</p>
+            <p class="pm">{{ zy.pm }}</p>
           </div>
         </el-col>
       </div>
     </el-row>
     <el-row :gutter="10">
       <el-divider></el-divider>
-      <h3>最新动漫</h3>
+      <h3 class="typebt">最新动漫</h3>
       <div class="type">
         <el-col
           :xs="8"
@@ -87,9 +87,9 @@
           :key="dm.id"
         >
           <div class="ys">
-            <span class="zt">{{ dm.zt }}</span>
             <img class="ystp" :src="dm.tp" @click="ysOn(dm.id)" />
-            <span>{{ dm.pm }}</span>
+            <p class="zt">{{ dm.zt }}</p>
+            <p class="pm">{{ dm.pm }}</p>
           </div>
         </el-col>
       </div>
@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "Sy",
   data() {
@@ -107,8 +108,11 @@ export default {
   },
   methods: {
     ysOn(id) {
-      this.$router.push({ name: "ys", params: { id: id } });
-    }
+      this.$router.push({ name: "ys", query: { id: id } });
+    },
+    ...mapMutations({
+      add: "SET_USER"
+    })
   },
   mounted() {
     this.$axios.get(this.ysip + "/sy").then(response => {
@@ -134,10 +138,10 @@ export default {
   margin: 0rem auto;
 }
 .lbt {
-  height: 23.75rem;
+  height: 11.25rem;
 }
 .el-carousel__container {
-  height: 26rem !important;
+  height: 13rem !important;
 }
 .lbpm {
   display: flex;
@@ -145,62 +149,83 @@ export default {
   align-items: center;
   font-size: 1rem;
 }
+.typebt {
+  font-size: 2rem;
+}
 .type {
-  width: 80%;
   margin: 0rem auto;
-}
-.ys {
-  height: 28rem;
-  font-size: 18px;
-}
-.ys span {
-  font-size: 16px;
 }
 .ystp {
   width: 100%;
-  height: 90%;
 }
 .zt {
-  position: relative;
-  top: 90%;
+  margin: 0px;
+  line-height: 1rem;
+  font-size: 1rem;
   background: #67c23a;
-  font-size: 12px;
   color: #ffffff;
+  white-space: nowrap; /* 使文本不可换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略符号来代表被隐藏的文本 */
 }
+.pm {
+  margin: 5px;
+  line-height: 1rem;
+  font-size: 1rem;
+  white-space: nowrap; /* 使文本不可换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略符号来代表被隐藏的文本 */
+}
+.el-divider {
+  margin-top: 1rem !important;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
+  .gg {
+    font-size: 1.5rem;
+  }
+  .lbpm {
+    font-size: 1.5rem;
+  }
   .lbt {
     height: 16rem;
   }
   .el-carousel__container {
-    height: 18rem !important;
+    height: 20rem !important;
   }
-  .ys {
-    height: 22rem;
-    margin-bottom: 10px;
+  .zt {
+    margin: 0px;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
   }
-  .type {
-    width: 100%;
-  }
-  .ys span {
-    font-size: 16px;
+  .pm {
+    margin: 10px;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
   }
 }
-@media (min-width: 320px) and (max-width: 767px) {
+@media (min-width: 992px) {
+  .gg {
+    font-size: 2rem;
+  }
+  .lbpm {
+    font-size: 2rem;
+  }
   .lbt {
-    height: 11.25rem;
+    height: 22rem;
   }
   .el-carousel__container {
-    height: 13rem !important;
+    height: 25rem !important;
   }
-  .ys {
-    height: 15rem;
-    margin-bottom: 10px;
+  .zt {
+    margin: 0px;
+    line-height: 2rem;
+    font-size: 2rem;
   }
-  .type {
-    width: 100%;
-  }
-  .ys span {
-    font-size: 13px;
+  .pm {
+    margin: 10px;
+    line-height: 2rem;
+    font-size: 2rem;
   }
 }
 </style>

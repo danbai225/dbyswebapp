@@ -11,7 +11,7 @@
           <el-dropdown-item command="reg" v-if="user == null"
             >注册</el-dropdown-item
           >
-          <el-dropdown-item>搜索</el-dropdown-item>
+          <el-dropdown-item command="search">搜索</el-dropdown-item>
           <el-dropdown-item v-if="user != null">个人中心</el-dropdown-item>
           <el-dropdown-item command="logout" v-if="user != null"
             >退出登陆</el-dropdown-item
@@ -60,7 +60,6 @@ export default {
       add: "SET_USER"
     }),
     handleCommand(command) {
-      console.log(command);
       if (command == "logout") {
         this.$axios.post(this.ysip + "/logout").then(response => {
           response;
@@ -80,10 +79,16 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.getItem("user") != null) {
-      this.add(JSON.parse(localStorage.getItem("user")));
-      this.user = this.$store.getters.user;
-    }
+    this.$axios.get(this.ysip + "/iflogin").then(r => {
+      if (r.data == "yes") {
+        if (localStorage.getItem("user") != null) {
+          this.add(JSON.parse(localStorage.getItem("user")));
+          this.user = this.$store.getters.user;
+        }
+      } else {
+        localStorage.removeItem("user");
+      }
+    });
   }
 };
 </script>
