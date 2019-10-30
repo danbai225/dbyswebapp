@@ -12,7 +12,7 @@
             >注册</el-dropdown-item
           >
           <el-dropdown-item command="search">搜索</el-dropdown-item>
-          <el-dropdown-item v-if="user != null">个人中心</el-dropdown-item>
+          <el-dropdown-item v-if="user != null" command="person">个人中心</el-dropdown-item>
           <el-dropdown-item command="logout" v-if="user != null"
             >退出登陆</el-dropdown-item
           >
@@ -99,6 +99,10 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f7f9f9;
+}
+.el-avatar{
+  width: 50px;
+  height: 50px;
 }
 @media (max-width: 992px) {
   .el-menu-item {

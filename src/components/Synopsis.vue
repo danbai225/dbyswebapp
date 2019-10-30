@@ -31,9 +31,16 @@
             播放时间:
             <span class="bt">{{ ys.sytime }}</span>
           </p>
-          <p class="bn" v-if="ys.pf != ''">
+          <p v-if="ys.pf!=''">
             评分:
-            <span class="bt">{{ ys.pf }}</span>
+            <el-rate
+              v-model="ys.pf"
+              disabled
+              show-score
+              text-color="#ff9900"
+              score-template="{value}"
+              :max="10"
+            ></el-rate>
           </p>
         </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -57,8 +64,7 @@ export default {
   name: "Synopsis",
   computed: mapState({
     ys: state => state.ys
-  }),
-  mounted() {}
+  })
 };
 </script>
 
@@ -67,9 +73,11 @@ export default {
   text-align: center;
 }
 .bn {
-  line-height: 1.5;
+  line-height: 1rem;
   font-size: 14px;
   color: #909399;
+  margin-block-end: 0.5em;
+  margin-block-start: 0.5em;
 }
 .bt {
   font-size: 13px;
@@ -81,8 +89,19 @@ export default {
 #ystp {
   width: 100%;
 }
-@media (max-width: 992px) {
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .bn {
+    line-height: 2rem;
+    margin-block-end: 1rem;
+    margin-block-start: 1rem;
+  }
 }
-@media (max-width: 768px) {
+@media (min-width: 992px) {
+  .bn {
+    line-height: 2rem;
+    margin-block-end: 1rem;
+    margin-block-start: 1rem;
+  }
 }
 </style>

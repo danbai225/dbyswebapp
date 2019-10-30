@@ -29,7 +29,9 @@ import {
   Loading,
   PageHeader,
   RadioGroup,
-  RadioButton
+  RadioButton,
+  Card,
+  Rate
 } from "element-ui";
 Vue.use(Row);
 Vue.use(Carousel);
@@ -51,6 +53,8 @@ Vue.use(Loading);
 Vue.use(PageHeader);
 Vue.use(RadioGroup);
 Vue.use(RadioButton);
+Vue.use(Card);
+Vue.use(Rate);
 new Vue({
   router,
   store,
