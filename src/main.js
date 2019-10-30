@@ -31,7 +31,9 @@ import {
   RadioGroup,
   RadioButton,
   Card,
-  Rate
+  Rate,
+  Popover,
+  Upload
 } from "element-ui";
 Vue.use(Row);
 Vue.use(Carousel);
@@ -55,6 +57,8 @@ Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Card);
 Vue.use(Rate);
+Vue.use(Popover);
+Vue.use(Upload);
 new Vue({
   router,
   store,

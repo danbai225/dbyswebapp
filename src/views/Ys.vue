@@ -32,7 +32,6 @@ export default {
       player: null,
       jis: null,
       id: 0,
-      tagid: 0,
       ys: {},
       tiaotime: 0,
       options: {
@@ -65,9 +64,7 @@ export default {
       if (this.jis[i].name != null) {
         this.lastjiname = this.jis[i].name;
         this.options.video.url = this.jis[i].url;
-  
         this.player.switchVideo(this.options.video, this.options.danmaku);
-        this.gettagid(i, this.jis[i].name);
         this.radio = this.jis[i].name;
       }
     },
@@ -76,24 +73,6 @@ export default {
     }),
     goBack() {
       this.$router.go(-1);
-    },
-    gettagid(id, jiname) {
-      this.$axios
-        .get(
-          this.ysip +
-            "/ys/gettagid?pm=" +
-            this.ys.pm +
-            this.ys.dy +
-            this.ys.lx +
-            "&id=" +
-            id +
-            "&ysid=" +
-            this.id +
-            jiname
-        )
-        .then(response => {
-          this.tagid = response.data;
-        });
     },
     nexiji() {
       for (var i in this.jis) {
@@ -135,17 +114,17 @@ export default {
         this.options.video.url = this.jis[0].url;
         this.radio = this.jis[0].name;
       }
-      if(this.user.username!=undefined){
-this.dsq = setInterval(() => {
-        let data = new FormData();
-        data.append("ysid", this.id);
-        data.append("username", this.user.username);
-        data.append("time", this.player.video.currentTime);
-        data.append("ysjiname", this.radio);
-        this.$axios.post(this.ysip + "/ys/time", data);
-      }, 5000);
+      if (this.user.username != undefined) {
+        this.dsq = setInterval(() => {
+          let data = new FormData();
+          data.append("ysid", this.id);
+          data.append("username", this.user.username);
+          data.append("time", this.player.video.currentTime);
+          data.append("ysjiname", this.radio);
+          this.$axios.post(this.ysip + "/ys/time", data);
+        }, 5000);
       }
-      
+
       this.loading.close();
     });
     this.player.on("ended", () => {

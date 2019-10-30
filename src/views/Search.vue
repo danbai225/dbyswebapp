@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style>
+.el-page-header {
+  margin: 10px;
+}
 #s {
   width: 90%;
   margin: 10px auto;

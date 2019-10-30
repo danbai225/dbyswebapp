@@ -31,7 +31,7 @@
             播放时间:
             <span class="bt">{{ ys.sytime }}</span>
           </p>
-          <p v-if="ys.pf!=''">
+          <p v-if="ys.pf != ''">
             评分:
             <el-rate
               v-model="ys.pf"
