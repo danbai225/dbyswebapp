@@ -65,7 +65,7 @@ export default {
           if (this.input == this.inputr) {
             this.souflg = false;
             this.$axios
-              .get(this.ysip + "/api/v1/ys/search/ys/" + this.input)
+              .get(this.ysip + "/api/v1/ys/search/" + this.input)
               .then(r => {
                 this.yslist = r.data.data;
               });
