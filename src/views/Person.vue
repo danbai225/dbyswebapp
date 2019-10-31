@@ -1,6 +1,10 @@
 <template>
   <div>
-    <el-page-header @back="goBack" title="返回首页" content="个人信息"></el-page-header>
+    <el-page-header
+      @back="goBack"
+      title="返回首页"
+      content="个人信息"
+    ></el-page-header>
     <el-card class="box-card">
       <div class="zl">
         <el-avatar :src="this.user.headurl">
@@ -31,7 +35,13 @@
             <img v-if="imageUrl" :src="imageUrl" class="avatar" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
-          <el-button type="primary" icon="el-icon-edit" size="mini" slot="reference">修改头像</el-button>
+          <el-button
+            type="primary"
+            icon="el-icon-edit"
+            size="mini"
+            slot="reference"
+            >修改头像</el-button
+          >
         </el-popover>
       </div>
     </el-card>
@@ -48,7 +58,7 @@
                 <p>片名:{{ ls.pm }}</p>
                 <p>观看到:{{ ls.ji }}</p>
                 <p>时长:{{ ls.time }}</p>
-                <p>观看时间:{{ls.gktime}}</p>
+                <p>观看时间:{{ ls.gktime }}</p>
               </div>
             </el-col>
           </el-card>
