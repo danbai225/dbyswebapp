@@ -34,7 +34,7 @@
       <el-menu-item index="zy">综艺</el-menu-item>
       <el-menu-item index="dm">动漫</el-menu-item>
     </el-menu>
-    <div  @click="gop()">
+    <div @click="gop()">
       <el-avatar v-if="user != null" :src="user.headurl"></el-avatar>
     </div>
   </div>
@@ -51,8 +51,8 @@ export default {
     };
   },
   methods: {
-    gop(){
-this.$router.push({ name: "person" });
+    gop() {
+      this.$router.push({ name: "person" });
     },
     Select(key) {
       if (this.$route.name != key) {
