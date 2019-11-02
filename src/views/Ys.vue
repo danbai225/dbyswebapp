@@ -37,7 +37,7 @@ export default {
       options: {
         video: {
           url: "",
-          pic: "http://cdn.p00q.cn:81/ys/img/tip.png"
+          pic: "https://cdn.p00q.cn/ys/img/tip.png"
         },
         autoplay: true,
         logo: require("../assets/logo.png"),
@@ -76,8 +76,11 @@ export default {
     },
     nexiji() {
       for (var i in this.jis) {
-        if (this.jis[i].name == this.radio) {
-          this.bo(parseInt(i) + 1);
+        if (this.jis[i].name == this.lastjiname) {
+          if(this.jis.length>i+1){
+            this.bo(parseInt(i) + 1);
+          }
+          return
         }
       }
     },
