@@ -5,7 +5,7 @@
       <el-divider></el-divider>
       <div id="lb">
         <el-carousel :interval="2000" type="card">
-          <el-carousel-item v-for="ys in sy.dy" :key="ys.id">
+          <el-carousel-item v-for="ys in sy.tj" :key="ys.id">
             <img class="lbt" :src="ys.tp" @click="ysOn(ys.id)" />
             <span class="lbpm">{{ ys.pm }}</span>
           </el-carousel-item>

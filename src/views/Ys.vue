@@ -77,10 +77,10 @@ export default {
     nexiji() {
       for (var i in this.jis) {
         if (this.jis[i].name == this.lastjiname) {
-          if(this.jis.length>i+1){
+          if (this.jis.length > i + 1) {
             this.bo(parseInt(i) + 1);
           }
-          return
+          return;
         }
       }
     },
