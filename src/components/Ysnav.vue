@@ -5,6 +5,7 @@
         <el-button size="mini" type="primary">=</el-button>
         <el-dropdown-menu slot="dropdown">
           <span v-if="user != null">欢迎{{ user.username }}:</span>
+          <el-dropdown-item command="tv">电视直播</el-dropdown-item>
           <el-dropdown-item command="login" v-if="user == null"
             >登陆</el-dropdown-item
           >

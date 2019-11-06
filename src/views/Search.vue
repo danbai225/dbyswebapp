@@ -41,9 +41,10 @@ export default {
     return {
       input: "",
       yslist: {},
-      inputr: null,
+      inputr: "",
       dsq: 0,
-      souflg: true
+      flg: false,
+      inputrr: ""
     };
   },
   methods: {
@@ -51,25 +52,34 @@ export default {
       this.$router.push("/");
     },
     sou() {
-      this.inputr = this.input;
-      this.souflg = true;
+      this.flg = true;
     },
     ysOn(id) {
-      this.$router.push({ path: "/ys", query: { id: id } });
+      this.$router.push({
+        path: "/ys",
+        query: { id: id },
+        params: { gjc: this.input }
+      });
     }
   },
   mounted() {
+    if (this.$route.query.gjc != undefined) {
+      this.input = this.$route.query.gjc;
+    }
     setInterval(() => {
-      if (this.souflg) {
-        if (this.input != "") {
-          if (this.input == this.inputr) {
-            this.souflg = false;
+      if (this.flg & (this.input != "")) {
+        if (this.input == this.inputr) {
+          this.flg = false;
+          if (this.input != this.inputrr) {
             this.$axios
               .get(this.ysip + "/api/v1/ys/search/" + this.input)
               .then(r => {
                 this.yslist = r.data.data;
               });
+            this.inputrr = this.input;
           }
+        } else {
+          this.inputr = this.input;
         }
       }
     }, 1000);

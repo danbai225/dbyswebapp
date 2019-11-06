@@ -72,7 +72,14 @@ export default {
       addys: "SET_YS"
     }),
     goBack() {
-      this.$router.go(-1);
+      if (this.$route.query.gjc != undefined) {
+        this.$router.replace({
+          path: "/search",
+          query: { gjc: this.$route.query.gjc }
+        });
+      } else {
+        this.$router.go(-1);
+      }
     },
     nexiji() {
       for (var i in this.jis) {

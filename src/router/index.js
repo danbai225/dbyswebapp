@@ -68,6 +68,11 @@ const routes = [
     path: "/person",
     name: "person",
     component: () => import("../views/Person")
+  },
+  {
+    path: "/tv",
+    name: "tv",
+    component: () => import("../views/Tv")
   }
 ];
 
