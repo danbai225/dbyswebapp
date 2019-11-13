@@ -3,11 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
-window.Hls = require("hls.js");
+window.Hls = require("cdnbye");
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;
 Vue.prototype.ysip = process.env.VUE_APP_YSIP;
+Vue.prototype.ysipcache = process.env.VUE_APP_CACHEIP;
 import "element-ui/lib/theme-chalk/index.css";
 import {
   Row,
