@@ -16,8 +16,8 @@
             <span class="bt">{{ ys.zy }}</span>
           </p>
           <p class="bn" v-if="ys.dq != ''">
-            地区:
-            <span class="bt">{{ ys.dq }}</span>
+            类型:
+            <span class="bt">{{ ys.lx }}</span>
           </p>
           <p class="bn" v-if="ys.zt != ''">
             状态:

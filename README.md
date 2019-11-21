@@ -9,7 +9,7 @@
 
 
 ![](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.0.0-blue)
-![](https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE%E7%8A%B6%E6%80%81-%E5%BC%80%E5%8F%91%E4%B8%AD-brightgreen)
+![](https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE%E7%8A%B6%E6%80%81-%E7%BB%B4%E6%8A%A4%E6%96%B0%E5%A2%9E-brightgreen)
 
 [线上地址](http://m.dbys.vip)
 
@@ -47,6 +47,3 @@
 + 电视直播功能
 
 ## 计划开发功能
-
-+ 影视增加评论、评分功能
-+ 淡白影视APP(开发中)

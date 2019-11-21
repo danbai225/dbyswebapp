@@ -72,7 +72,7 @@ export default {
           this.flg = false;
           if (this.input != this.inputrr) {
             this.$axios
-              .get(this.ysipcache + "/api/v1/ys/search/" + this.input)
+              .get(this.ysip + "/api/v1/ys/search/" + this.input)
               .then(r => {
                 this.yslist = r.data.data;
               });

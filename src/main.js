@@ -8,7 +8,6 @@ Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;
 Vue.prototype.ysip = process.env.VUE_APP_YSIP;
-Vue.prototype.ysipcache = process.env.VUE_APP_CACHEIP;
 import "element-ui/lib/theme-chalk/index.css";
 import {
   Row,
