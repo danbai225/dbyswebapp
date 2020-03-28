@@ -73,6 +73,11 @@ const routes = [
     path: "/tv",
     name: "tv",
     component: () => import("../views/Tv")
+  },
+  {
+    path: "/yiqikan",
+    name: "yiqikan",
+    component: () => import("../views/Yiqikan")
   }
 ];
 

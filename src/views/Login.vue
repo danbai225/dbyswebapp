@@ -1,7 +1,7 @@
 <template>
   <div id="login">
-    <el-page-header @back="goBack" title="返回" content="登陆" />
-    <h3>登陆</h3>
+    <el-page-header @back="goBack" title="返回" content="登录" />
+    <h3>登录</h3>
     <span>欢迎使用淡白影视</span>
     <div class="form">
       <el-form
@@ -31,7 +31,7 @@
             type="primary"
             @click="submitForm()"
             @keyup.enter.native="submitForm()"
-            >登陆</el-button
+            >登录</el-button
           >
           <el-button @click="zc()">注册</el-button>
         </el-form-item>

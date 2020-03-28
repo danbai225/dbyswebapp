@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row :gutter="10">
-      <div class="gg">公告:{{ sy.gg }}</div>
+      <div class="gg" v-html="sy.gg"></div>
       <el-divider></el-divider>
       <div id="lb">
         <el-carousel :interval="2000" type="card">

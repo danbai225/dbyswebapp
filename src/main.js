@@ -33,7 +33,12 @@ import {
   Card,
   Rate,
   Popover,
-  Upload
+  Upload,
+  Table,
+  TableColumn,
+  Tag,
+  Tabs,
+  TabPane
 } from "element-ui";
 Vue.use(Row);
 Vue.use(Carousel);
@@ -59,6 +64,11 @@ Vue.use(Card);
 Vue.use(Rate);
 Vue.use(Popover);
 Vue.use(Upload);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Tag);
+Vue.use(Tabs);
+Vue.use(TabPane);
 new Vue({
   router,
   store,

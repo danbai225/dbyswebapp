@@ -7,17 +7,20 @@
           <span v-if="user != null">欢迎{{ user.username }}:</span>
           <el-dropdown-item command="tv">电视直播</el-dropdown-item>
           <el-dropdown-item command="login" v-if="user == null"
-            >登陆</el-dropdown-item
+            >登录</el-dropdown-item
           >
           <el-dropdown-item command="reg" v-if="user == null"
             >注册</el-dropdown-item
           >
           <el-dropdown-item command="search">搜索</el-dropdown-item>
+          <el-dropdown-item v-if="user != null" command="yiqikan"
+            >一起看</el-dropdown-item
+          >
           <el-dropdown-item v-if="user != null" command="person"
             >个人中心</el-dropdown-item
           >
           <el-dropdown-item command="logout" v-if="user != null"
-            >退出登陆</el-dropdown-item
+            >退出登录</el-dropdown-item
           >
         </el-dropdown-menu>
       </el-dropdown>
