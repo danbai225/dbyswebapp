@@ -14,6 +14,7 @@
             </template>
           </el-table-column>
         </el-table>
+        <el-button type="primary" @click="goshouye()">返回首页</el-button>
         <el-button type="primary" @click="newRoom()">创建房间</el-button>
       </div>
     </div>
@@ -24,7 +25,7 @@
         <el-tab-pane label="聊天">
           <div id="statements">
             <div class="statement" v-for="s in statements" :key="s.id">
-              {{s.username}}-{{getFormatDate()}}:
+              {{s.username}}-{{s.time}}:
               <br />
               {{s.msg}}
             </div>
@@ -179,7 +180,7 @@ export default {
           this.sendChat(json);
           break;
         case "sendUrl":
-          this.sendUrl(json.url);
+          this.sendUrl(json);
           break;
         case "sendTime":
           this.sendTime(json.time);
@@ -242,6 +243,7 @@ export default {
       }
     },
     sendChat(data) {
+      data.time=this.getFormatDate();
       this.statements.push(data);
     },
     joinbt(row) {
@@ -279,7 +281,6 @@ export default {
       if (url != null) {
         this.options.video.url = url;
         this.player.switchVideo(this.options.video);
-        this.player.notice("正在加载请稍后!");
         this.player.play();
       }
     },
@@ -290,6 +291,8 @@ export default {
     },
     zhuanfz(id) {
       this.rws.send(this.toJsonStr({ type: "transfer", id: id }));
+    },goshouye(){
+       window.location.href="http://m.dbys.vip"
     }
   },
   mounted() {
@@ -303,7 +306,8 @@ export default {
         this.$router.push("/login");
       }
     });
-    //连接服务器
+    if(this.rws==null){
+      //连接服务器
     this.username = JSON.parse(localStorage.getItem("user")).username;
     this.rws = new ReconnectingWebSocket(
       "ws://185.207.153.189:8081/cinema/socket/" + this.username
@@ -311,16 +315,17 @@ export default {
     this.rws.addEventListener("message", this.onmsg);
     this.player = this.$refs.player.dp;
     $("#yiqikan-room").hide();
+    }
     //定时器
 
     //首页信息刷新
-    setInterval(() => {
+    this.timer1=setInterval(() => {
       if (!$("#yiqikan-shouye").is(":hidden")) {
         this.rws.send(this.toJsonStr({ type: "info" }));
       }
     }, 1000);
     //观看时间发送
-    setInterval(() => {
+    this.timer2=setInterval(() => {
       if ($("#yiqikan-shouye").is(":hidden")) {
         if (this.username == this.room.author) {
           this.rws.send(
@@ -333,11 +338,17 @@ export default {
       }
     }, 1000);
     //房间信息刷新
-    setInterval(() => {
+    this.timer3=setInterval(() => {
       if ($("#yiqikan-shouye").is(":hidden")) {
         this.rws.send(this.toJsonStr({ type: "roomInfo" }));
       }
     }, 5000);
+  },destroyed() {
+    this.player.destroy();
+    window.clearTimeout(this.timer1);
+    window.clearTimeout(this.timer2);
+    window.clearTimeout(this.timer3);
+    this.rws.close();
   }
 };
 </script>
