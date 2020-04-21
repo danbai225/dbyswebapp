@@ -134,7 +134,6 @@ export default {
           this.$axios.post(this.ysip + "/ys/time", data);
         }, 5000);
       }
-
       this.loading.close();
     });
     this.player.on("ended", () => {
