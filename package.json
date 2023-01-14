@@ -10,7 +10,7 @@
   "dependencies": {
     "cdnbye": "^1.2.0",
     "core-js": "^3.6.4",
-    "dplayer": "^1.25.0",
+    "dplayer": "^1.27.0",
     "element-ui": "^2.13.0",
     "hls.js": "^0.12.4",
     "jquery": "^3.4.1",
